@@ -17,15 +17,23 @@ func IndexHandler (w http.ResponseWriter, r *http.Request) {
 func main () {
     // 处理静态资源
     http.Handle("/static/",http.StripPrefix("/static/",http.FileServer(http.Dir("views/static"))))
+    // 直接去html页面
+    http.Handle("/pages/", http.StripPrefix("/pages/", http.FileServer(http.Dir("views/pages"))))
+    // 去首页
     http.HandleFunc("/main", IndexHandler)
     // 客户登陆
-    http.HandleFunc("/pages/user/login",controller.Login)
+    http.HandleFunc("views/pages/user/login",controller.UserLogin)
     // 客户注册
-    http.HandleFunc("/pages/user/regist",controller.Regist)
+    http.HandleFunc("views/pages/user/regist",controller.UserRegist)
     // 律师注册
-    http.HandleFunc("/pages/lawyer/login",controller.Login)
+    http.HandleFunc("views/pages/lawyer/login",controller.LawyerLogin)
     // 律师登陆
-    http.HandleFunc("/pages/lawyer/regist",controller.Regist)
-    http.ListenAndServe(":8080", nil)
+    http.HandleFunc("views/pages/lawyer/regist",controller.LawyerRegist)
+    // 查看相关文档
+    http.HandleFunc("getArticle",controller.GetArticles)
+    // 查看案件信息
+    http.HandleFunc("/getQuestions", controller.GetQuestions)
+    // 添加案件信息
+    http.HandleFunc("/addQuestions", controller.AddQuestion)
 }
  

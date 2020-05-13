@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// Login 客户登陆函数
-func Login(w http.ResponseWriter, r *http.Request)  {
+// UserLogin 客户登陆函数
+func UserLogin(w http.ResponseWriter, r *http.Request)  {
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
 	// 验证客户账号和密码
@@ -23,8 +23,8 @@ func Login(w http.ResponseWriter, r *http.Request)  {
 	}
 }
 
-// Regist 处理客户注册函数
-func Regist(w http.ResponseWriter, r *http.Request)  {
+// UserRegist 处理客户注册函数
+func UserRegist(w http.ResponseWriter, r *http.Request)  {
 	// 获取客户账号和密码
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
@@ -35,7 +35,7 @@ func Regist(w http.ResponseWriter, r *http.Request)  {
 		t := template.Must(template.ParseFiles("views/pages/user/regist.html"))
 		t.Execute(w, "用户名已存在")
 	}else{
-		dao.SaveUser(ausername, password, name)
+		dao.SaveUser(username, password, name)
 		t := template.Must(template.ParseFiles("views/pages/user/regist_success.html"))
 		t.Execute(w, "")
 	}

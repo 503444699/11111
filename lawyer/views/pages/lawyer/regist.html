@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>律师注册页面</title>
+<link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+<style type="text/css">
+	.login_form{
+		height:420px;
+		margin-top: 25px;
+	}	
+</style>
+<script src="/static/script/jquery-1.7.2.js"></script>
+<script>
+	$(function(){
+		//给注册按钮绑定单击事件
+		$("#sub_btn").click(function(){
+			var lawyername = $("#lawyername").val();
+			var lawyernameReg = /^[a-zA-Z0-9_-]{3,16}$/;
+			var flag = lawyernameReg.test(lawyername);
+			if(!flag){
+				alert("请输入3-16位的字母、数字、下划线或减号的用户名！");
+				return false;
+			}
+			//获取客户输入的密码
+			var password = $("#password").val();
+			var passwordReg = /^[a-zA-Z0-9_-]{6,18}$/;
+			if(!passwordReg.test(password)){
+				alert("请输入6-18位的字母、数字、下划线或减号的密码！")
+				return false;
+			}
+			var repwd = $("#repwd").val();
+			if(repwd == ""){
+				alert("确认密码不能为空！");
+				return false;
+			}
+			//判断两次输入的密码是否一致
+			if(repwd != password){
+				$("#repwd").val("");
+				alert("两次输入的密码不一致！");
+				return false;
+			}
+            //获取客户姓名
+            var name = $("#name").val();
+            var nameReg = /^[^\u4E00-\u9FA5]{2,4}$/;
+            if(!nameReg.test(name)){
+				alert("姓名错误！");
+				return false;
+			}
+            //获取律师类型
+            var genre = $("#genre").val();
+            var genreReg = /^[^\u4E00-\u9FA5]{2,4}$/;
+            if(!genreReg.test(genre)){
+				alert("律师类型错误");
+				return false;
+			}
+            //获取律师经验
+            var introduction = $("#introduction").val();
+            var introductionReg = /^[^\u4E00-\u9FA5]{1，300}$/;
+            //获取律师电话
+			var phone = $("#phone").val();
+			var phoneReg = /^[0-9]{3,20}$/;
+			if(!phoneReg.test(phone)){
+				alert("电话不正确！");
+				return false;
+			}
+
+		});
+		//将显示错误提示信息的span标签隐藏
+		$("#msg").hide();
+		if("{{.}}"=="账号已存在！"){
+			$("#msg").show();
+		}
+
+		//给输入客户账号的文本框绑定change事件
+		$("#lawyername").change(function(){
+			var lawyername = $(this).val();
+			var url = "/checkLawyerName";
+			var param = {"lawyername":lawyername};
+			$.post(url,param,function(res){
+				$("#msg").show();
+				$("#msg").html(res);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+			<div class="login_banner">
+			
+				<div id="l_content">
+					<span class="login_word">欢迎进入律师注册</span>
+				</div>
+				
+				<div id="content">
+					<div class="login_form">
+						<div class="login_box">
+							<div class="tit">
+								<h1>律师注册</h1>
+								<span class="errorMsg" id="msg">{{.}}</span>
+							</div>
+							<br>
+							<div class="form">
+								<form action="/regist" method="POST">
+									<label>律师账号：</label>
+									<input class="itxt" type="text" placeholder="请输入账号" autocomplete="off" tabindex="1" name="username" id="username" />
+									<br />
+									<br />
+									<label>律师密码：</label>
+									<input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" id="password" />
+									<br />
+									<br />
+									<label>确认密码：</label>
+									<input class="itxt" type="password" placeholder="确认密码" autocomplete="off" tabindex="1" name="repwd" id="repwd" />
+									<br />
+                                    <br />
+                                    <label>律师姓名：</label>
+									<input class="itxt" type="text" placeholder="请输入姓名" autocomplete="off" tabindex="1" name="name" id="name" />
+									<br />
+                                    <br />
+                                    <label>律师类型：</label>
+									<input class="itxt" type="text" placeholder="请输入类型" autocomplete="off" tabindex="1" name="genre" id="genre" />
+									<br />
+                                    <br />
+                                    <label>律师经验：</label>
+									<input class="itxt" type="text" placeholder="请输入经验" autocomplete="off" tabindex="1" name="introduction" id="introduction" />
+									<br />
+                                    <br />
+									<label>律师电话：</label>
+									<input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email" id="email" />
+									<br />
+									<br />
+									<input type="submit" value="注册" id="sub_btn" />
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<div id="bottom">
+			<span>
+				律师服务系统
+			</span>
+		</div>
+</body>
+</html>

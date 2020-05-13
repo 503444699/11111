@@ -1,13 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>客户登录页面</title>
+<meta charset="UTF-8">
+<title>客户注册页面</title>
+<link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+<!--引入jquery.js文件 -->
+<script type="text/javascript" src="/static/script/jquery-1.7.2.js"></script>
+<script>
+	$(function(){
+		//给登录按钮绑定单击事件
+		$("#sub_btn").click(function(){
+			//获取客户输入的用户名
+			/*
+				val()：用来获取或设置input中的value属性值
+				对象.val()：获取value属性值
+				对象.val("new Value")：设置value属性值
+			*/
+			var username = $("#username").val();
+			//判断客户名是否为空
+			if(username == ""){
+				alert("客户账号不能为空！");
+				//取消默认行为
+				return false;
+			}
+			//获取客户输入的密码
+			var password = $("#password").val();
+			if(password == ""){
+				alert("密码不能为空！");
+				return false;
+			}
+		});
+		//切换span标签中的信息
+		if("{{.}}"=="客户账号或密码不正确！"){
+			//设置span标签中的文本值
+			$("#msg").text("客户账号或密码不正确！");
+		}
+	});
+</script>
 </head>
 <body>
-        用户名：<input type="text" placeholder="请输入客户账号" autocomplete="off" tabindex="1" name="username"/></br>
-        密  码：<input type="text" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password"/></br>
-        <input type="submit"/>
+		<div id="login_header">
+		</div>		
+			<div class="login_banner">			
+				<div id="l_content">
+					<span class="login_word">欢迎登录</span>
+				</div>			
+				<div id="content">
+					<div class="login_form">
+						<div class="login_box">
+							<div class="tit">
+								<h1>律师服务系统</h1>
+								<a href="/pages/user/regist.html">立即注册</a>
+							</div>
+							<div class="msg_cont">
+								<b></b>
+								<span class="errorMsg">请输入用户名和密码</span>
+							</div>
+							<div class="form">
+								<form action="/pages/user/login_success.html">
+									<label>客户账号：</label>
+									<input class="itxt" type="text" placeholder="请输入账号名" autocomplete="off" tabindex="1" name="username" />
+									<br />
+									<br />
+									<label>客户密码：</label>
+									<input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" />
+									<br />
+									<br />
+									<br />
+									<input type="submit" value="登录" id="sub_btn" />
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="bottom">
+				<span>
+				  律师服务系统
+				</span>
+			  </div>
 </body>
 </html>
