@@ -1,15 +1,14 @@
 package controller
 
 import (
+	"html/template"
 	"net/http"
-	"lawyer/model"
-	"lawyer/utils"
 	"lawyer/dao"
 )
 
-// GetArticle 获取文章
-func GetArticle(w http.ResponseWriter, r *http.Request) {
-article, _ := dao.GetArticle()
-t := template.Must(template.ParseFiles("views/pages/article/article.html"))
-t.Execute(w, books)
+// GetArticles 获取文章
+func GetArticles(w http.ResponseWriter, r *http.Request) {
+    articles, _ := dao.GetArticles()
+    t := template.Must(template.ParseFiles("views/pages/article/article.html"))
+    t.Execute(w, articles)
 }

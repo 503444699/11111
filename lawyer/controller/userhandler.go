@@ -2,8 +2,6 @@ package controller
 
 import (
 	"lawyer/dao"
-	"lawyer/model"
-	"lawyer/utils"
 	"html/template"
 	"net/http"
 )

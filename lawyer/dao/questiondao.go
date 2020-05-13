@@ -22,9 +22,9 @@ func GetQuestions() ([]*model.Question, error) {
 }
 
 //AddQuestion 添加案件
-func AddQuestion(b *model.Question) error {
-	slqStr := "insert into books(username,name,phone,genre,state) values(?,?,?,?,?)"
-	_, err := utils.Db.Exec(slqStr, username, name, phone, genre, state)
+func AddQuestion(question *model.Question) error {
+	slqStr := "insert into questions(username,name,phone,genre,state) values(?,?,?,?,?)"
+	_, err := utils.Db.Exec(slqStr, question.Username, question.Name, question.Phone, question.Genre, question.State)
 	if err != nil {
 		return err
 	}
