@@ -41,20 +41,9 @@
 				alert("两次输入的密码不一致！");
 				return false;
 			}
-			//获取客户输入的电话
-			var phone = $("#phone").val();
-			var phoneReg = /^[0-9]{3,20}$/;
-			if(!phoneReg.test(phone)){
-				alert("电话不正确！");
-				return false;
-			}
             //获取客户姓名
             var name = $("#name").val();
             var nameReg = /^[^\u4E00-\u9FA5]{2,4}$/;
-            if(!nameReg.test(name)){
-				alert("姓名错误！");
-				return false;
-			}
 
 		});
 		//将显示错误提示信息的span标签隐藏
@@ -105,13 +94,10 @@
 									<br />
 									<br />
 									<label>客户电话：</label>
-									<input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email" id="email" />
+									<input class="itxt" type="text" placeholder="请输入电话" autocomplete="off" tabindex="1" name="email" id="email" />
 									<br />
 									<br />
                                     <label>客户姓名：</label>
-									<input class="itxt" type="text" placeholder="请输入姓名" autocomplete="off" tabindex="1" name="name" id="name" />
-									<br />
-									<br />
 									<input type="submit" value="注册" id="sub_btn" />
 								</form>
 							</div>

@@ -35,5 +35,7 @@ func main () {
     http.HandleFunc("/getQuestions", controller.GetQuestions)
     // 添加案件信息
     http.HandleFunc("/addQuestions", controller.AddQuestion)
+
+    http.ListenAndServe(":8080",nil)
 }
  
