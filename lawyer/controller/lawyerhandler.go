@@ -40,3 +40,13 @@ func LawyerRegist(w http.ResponseWriter, r *http.Request)  {
 		t.Execute(w, "")
 	}
 }
+//CheckLawyerName 通过发送Ajax验证用户名是否可用
+func CheckLawyerName(w http.ResponseWriter, r *http.Request) {
+	lawyername := r.PostFormValue("lawyername")
+	lawyer, _ := dao.CheckLawyerName(lawyername)
+	if lawyer.ID > 0 {
+		w.Write([]byte("用户名已存在！"))
+	} else {
+		w.Write([]byte("<font style='color:green'>用户名可用！</font>"))
+	}
+}
