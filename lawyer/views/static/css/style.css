@@ -31,20 +31,39 @@ div{
     min-height: auto;
     text-align:center;
     font-weight:bold;
-    color: black;
+    color:#39987c;
     font-size: 50px;
 
 }
 
-#table_2 {
-    float: center;
+.table_2 {
+	text-align: center;
     margin-left:auto;
     margin-right:auto;
 }
 
+.table_3 {
+	text-align: center;
+    margin-left:auto;
+	margin-right:auto;
+	font-size: 40px ;
+	font-weight:bold;
+	color: #39987c;
+}
+
+.button {
+	background-color: #39987c;
+	font-size: 20px;
+	font-weight:bold;
+	border: none;
+	color: #fff;
+	width: 360px;
+	height: 40px;
+}
+
 #bottom {
 	height: 30px;
-	width: 1200px;
+	width: 100%;
     text-align: center;
     float:right
 }
@@ -56,10 +75,6 @@ div{
 	overflow: auto;
 }
 
-/* 
-   登录页面 
-*/
-
 #login_header{
 	height: 82px;
 	width: 1200px;
@@ -70,8 +85,22 @@ div{
 	background-color: #39987c;
 }
 
+.login_banner2{
+	height:700px;
+	background-color: #39987c;
+}
+
 .login_form{
 	height:310px;
+	width:406px;
+	float: right;
+	margin-right:50px;
+	margin-top: 50px;
+	background-color: #fff;
+}
+
+.login_form2{
+	height:600px;
 	width:406px;
 	float: right;
 	margin-right:50px;
@@ -169,4 +198,10 @@ h1 {
 
 .tit {
 	height: 30px;
+}
+
+.tit1 {
+	height: 30px;
+	color: #39987c;
+	text-align: center;
 }

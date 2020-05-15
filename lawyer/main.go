@@ -17,7 +17,7 @@ func IndexHandler (w http.ResponseWriter, r *http.Request) {
 func main () {
     // 处理静态资源
     http.Handle("/static/",http.StripPrefix("/static/",http.FileServer(http.Dir("views/static"))))
-    // 直接去html页面
+    // 去html页面
     http.Handle("/pages/", http.StripPrefix("/pages/", http.FileServer(http.Dir("views/pages"))))
     // 去首页
     http.HandleFunc("/main", IndexHandler)
@@ -25,9 +25,9 @@ func main () {
     http.HandleFunc("views/pages/user/login",controller.UserLogin)
     // 客户注册
     http.HandleFunc("views/pages/user/regist",controller.UserRegist)
-    // 律师注册
-    http.HandleFunc("views/pages/lawyer/login",controller.LawyerLogin)
     // 律师登陆
+    http.HandleFunc("views/pages/lawyer/login",controller.LawyerLogin)    
+    // 律师注册
     http.HandleFunc("views/pages/lawyer/regist",controller.LawyerRegist)
     // 查看相关文档
     http.HandleFunc("getArticle",controller.GetArticles)

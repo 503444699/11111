@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 				对象.val()：获取value属性值
 				对象.val("new Value")：设置value属性值
 			*/
-			var username = $("#lawyername").val();
+			var lawyername = $("#lawyername").val();
 			//判断律师账号是否为空
 			if(lawyername == ""){
 				alert("用户名不能为空！");
@@ -39,19 +39,20 @@
 </script>
 </head>
 <body>
-		<div id="login_header">
+	<div id="table_1">律师登陆页面</div>
+	<div id="login_header">
 		</div>
 		
 			<div class="login_banner">			
 				<div id="l_content">
-					<span class="login_word">欢迎登录</span>
+					<span class="login_word">欢迎律师登录</span>
 				</div>				
 				<div id="content">
 					<div class="login_form">
 						<div class="login_box">
 							<div class="tit">
-								<h1>律师服务系统</h1>
-								<a href="/pages/lawyer/regist.html">立即注册</a>
+								<h1>律师登陆页面</h1>
+								<a href="/pages/lawyer/regist.html">律师注册</a>
 								<br />
 							</div>
 							<div class="msg_cont">
@@ -59,7 +60,7 @@
 								<span class="errorMsg">请输入律师账号和密码</span>
 							</div>
 							<div class="form">
-								<form action="/pages/lawyer/login_success.html">
+								<form action="/pages/lawyer/login_success.html" method="POST">
 									<label>律师账号：</label>
 									<input class="itxt" type="text" placeholder="请输入账号名" autocomplete="off" tabindex="1" name="username" />
 									<br />

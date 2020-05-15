@@ -11,8 +11,8 @@ func LawyerLogin(w http.ResponseWriter, r *http.Request)  {
 	lawyername := r.PostFormValue("lawyername")
 	password := r.PostFormValue("password")
 	// 验证客户账号和密码
-	user, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
-	if user.ID > 0{
+	lawyer, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
+	if lawyer.ID > 0{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/login_sucess.html"))
 		t.Execute(w, "")
 	}else{
