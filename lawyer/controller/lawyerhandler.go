@@ -15,7 +15,7 @@ func LawyerLogin(w http.ResponseWriter, r *http.Request)  {
 	lawyer, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
 	fmt.Print(lawyer)
 	if lawyer.ID > 0{
-		t := template.Must(template.ParseFiles("wiews/pages/lawyer/login_sucess.html"))
+		t := template.Must(template.ParseFiles("views/pages/lawyer/login_sucess.html"))
 		t.Execute(w, "")
 	}else{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/login.html"))
