@@ -22,13 +22,13 @@ func main () {
     // 去首页
     http.HandleFunc("/main", IndexHandler)
     // 客户登陆
-    http.HandleFunc("/views/pages/user/login",controller.UserLogin)
+    http.HandleFunc("/login",controller.UserLogin)
     // 客户注册
-    http.HandleFunc("/views/pages/user/regist",controller.UserRegist)
+    http.HandleFunc("/regist",controller.UserRegist)
     // 律师登陆
-    http.HandleFunc("/views/pages/lawyer/login",controller.LawyerLogin)  
+    http.HandleFunc("/login",controller.LawyerLogin)  
     // 律师注册
-    http.HandleFunc("/views/pages/lawyer/regist",controller.LawyerRegist)
+    http.HandleFunc("/regist",controller.LawyerRegist)
     // 查看相关文档
     http.HandleFunc("/getArticle",controller.GetArticles)
     // 查看案件信息
