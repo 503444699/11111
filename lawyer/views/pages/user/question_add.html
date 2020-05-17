@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加案件</title>
+<link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+<style type="text/css">
+	.login_form{
+		height:420px;
+		margin-top: 25px;
+	}
+</style>
+<script src="/static/script/jquery-1.7.2.js"></script>
+<script>
+	$(function(){
+		//给添加按钮绑定单击事件
+		$("#sub_btn").click(function(){
+			var username = $("#username").val();
+			var usernameReg = /^[a-zA-Z0-9_-]{3,16}$/;
+			var flag = usernameReg.test(username);
+			if(!flag){
+				alert("请输入3-16位的字母、数字、下划线或减号的用户名！");
+				return false;
+			}
+            //获取案件名
+            var name = $("#name").val();
+			var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
+            //获取客户客户电话
+            var phone = $("#phone").val();
+			var phoneReg = /^[0-9]{3,20}$/;
+			if(!phoneReg.test(phone)){
+				alert("电话格式不正确！");
+				return false;
+			}
+			//获取案件类型
+			var genre = $("#genre").val();
+			var genreReg = /^[\u4E00-\u9FA5]{2，8}$/;
+			if(!genreReg.test(genre)){
+				alert("案件类型格式不正确！");
+				return false;
+			}
+			//获取案件状态
+			var state = $("#state").val();
+			var stateReg = /^[\u4E00-\u9FA5]{0,300}$/;
+			if(!stateReg.test(state)){
+				alert("案件状态格式不正确！");
+				return false;
+			}
+
+		});
+
+		//给输入客户账号的文本框绑定change事件
+		$("#username").change(function(){
+			var username = $(this).val();
+			var url = "/checkUserName";
+			var param = {"username":username};
+			$.post(url,param,function(res){
+				$("#msg").show();
+				$("#msg").html(res);
+			});
+		});
+	});
+</script>
+</head>
+<body>		
+	<div id="table_1">案件添加页面</div>
+	<div id="login_header">
+		</div>
+			<div class="login_banner2">
+			
+				<div id="l_content">
+					<span class="login_word">添加案件信息</span>
+				</div>
+				
+				<div id="content">
+					<div class="login_form2">
+						<div class="login_box">
+							<div class="tit">
+								<h1>案件信息</h1>
+							</div>
+							<br>
+							<div class="form">
+								<form action="/regist" method="POST">
+									<label>客户账号：</label>
+									<input class="itxt" type="text" placeholder="请输入客户账号" autocomplete="off" tabindex="1" name="username" id="username" />
+									<br />
+									<br />
+                                    <label>案件名称：</label>
+									<input class="itxt" type="text" placeholder="请输入案件名称" autocomplete="off" tabindex="1" name="name" id="name" />
+									<br />
+                                    <br />
+                                    <label>客户电话：</label>
+									<input class="itxt" type="text" placeholder="请输入客户电话" autocomplete="off" tabindex="1" name="phone"" id="phone" />
+									<br />
+									<br />
+									<label>案件类型：</label>
+									<input class="itxt" type="text" placeholder="请输入案件类型" autocomplete="off" tabindex="1" name="genre" id="genre" />
+									<br />
+									<br />
+									<label>案件状态：</label>
+									<input class="itxt" type="text" placeholder="请输入案件状态" autocomplete="off" tabindex="1" name="state" id="state" />
+									<br />
+                                    <br />
+									<input type="submit" value="注册" id="sub_btn" />
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="bottom">
+			<span>
+			  律师服务系统
+			</span>
+		  </div>
+</body>
+</html>

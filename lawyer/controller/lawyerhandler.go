@@ -4,6 +4,7 @@ import (
 	"lawyer/dao"
 	"html/template"
 	"net/http"
+	"fmt"
 )
 
 // LawyerLogin 律师登陆函数
@@ -12,8 +13,9 @@ func LawyerLogin(w http.ResponseWriter, r *http.Request)  {
 	password := r.PostFormValue("password")
 	// 验证客户账号和密码
 	lawyer, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
+	fmt.Print(lawyer)
 	if lawyer.ID > 0{
-		t := template.Must(template.ParseFiles("views/pages/lawyer/login_sucess.html"))
+		t := template.Must(template.ParseFiles("wiews/pages/lawyer/login_sucess.html"))
 		t.Execute(w, "")
 	}else{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/login.html"))
