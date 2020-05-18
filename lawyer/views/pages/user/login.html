@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -31,7 +31,7 @@
 			}
 		});
 		//切换span标签中的信息
-		if("{{.}}"=="客户账号或密码不正确！"){
+		if("{{.}}"=="客户账号或密码不正确"){
 			//设置span标签中的文本值
 			$("#msg").text("客户账号或密码不正确！");
 		}
@@ -55,16 +55,16 @@
 							</div>
 							<div class="msg_cont">
 								<b></b>
-								<span class="errorMsg">请输入用户名和密码</span>
+								<span class="errorMsg" id="msg">请输入用户名和密码</span>
 							</div>
 							<div class="form">
-								<form action="/login" method="POST">
+								<form action="/user/login" method="POST">
 									<label>客户账号：</label>
-									<input class="itxt" type="text" placeholder="请输入账号名" autocomplete="off" tabindex="1" name="username" />
+									<input id="username" class="itxt" type="text" placeholder="请输入账号名" autocomplete="off" tabindex="1" name="username" />
 									<br />
 									<br />
 									<label>客户密码：</label>
-									<input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" />
+									<input id="password" class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" />
 									<br />
 									<br />
 									<input type="submit" value="登录" id="sub_btn" />

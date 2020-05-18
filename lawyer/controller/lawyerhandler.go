@@ -19,7 +19,7 @@ func LawyerLogin(w http.ResponseWriter, r *http.Request)  {
 		t.Execute(w, "")
 	}else{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/login.html"))
-		t.Execute(w, "")
+		t.Execute(w, "律师账号或密码不正确")
 	}
 }
 
@@ -35,7 +35,7 @@ func LawyerRegist(w http.ResponseWriter, r *http.Request)  {
 	user, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
 	if user.ID > 0{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/regist.html"))
-		t.Execute(w, "用户名已存在")
+		t.Execute(w, "律师账号已存在")
 	}else{
 		dao.SaveLawyer(lawyername, password, name, genre, introduction, phone)
 		t := template.Must(template.ParseFiles("views/pages/lawyer/regist_success.html"))

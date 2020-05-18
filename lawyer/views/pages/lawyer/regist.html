@@ -42,22 +42,39 @@
 			}
             //获取客户姓名
             var name = $("#name").val();
-            var nameReg = /^[^\u4E00-\u9FA5]{2,4}$/;
+            var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
+			if(!nameReg.test(name)){
+				alert("律师姓名格式不正确！");
+				return false;
+			}
 
             //获取律师类型
             var genre = $("#genre").val();
-            var genreReg = /^[^\u4E00-\u9FA5]{2,4}$/;
+            var genreReg = /^[\u4E00-\u9FA5]{2,4}$/;
+			if(!genreReg.test(genre)){
+				alert("律师类型格式不正确！");
+				return false;
+			}
             //获取律师经验
             var introduction = $("#introduction").val();
-            var introductionReg = /^[^\u4E00-\u9FA5]{1,300}$/;
+            var introductionReg = /^[\u4E00-\u9FA5]{1,300}$/;
+			if(!introductionReg.test(introduction)){
+				alert("律师经验格式不正确！");
+				return false;
+			}
             //获取律师电话
 			var phone = $("#phone").val();
 			var phoneReg = /^[0-9]{3,20}$/;
+			if(!phoneReg.test(phone)){
+				alert("律师电话格式不正确！");
+				return false;
+			}
+			
 
 		});
 		//将显示错误提示信息的span标签隐藏
 		$("#msg").hide();
-		if("{{.}}"=="账号已存在！"){
+		if("{{.}}"=="律师账号已存在"){
 			$("#msg").show();
 		}
 
@@ -89,10 +106,11 @@
 						<div class="login_box">
 							<div class="tit">
 								<h1>律师注册</h1>
+								<span class="errorMsg" id="msg">{{.}}</span>
 							</div>
 							<br>
 							<div class="form">
-							<form action="/regist" method="POST">
+							<form action="/lawyer/regist" method="POST">
 									<label>律师账号：</label>
 									<input class="itxt" type="text" placeholder="请输入账号" autocomplete="off" tabindex="1" name="lawyername" id="lawyername" />
 									<br />

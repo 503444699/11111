@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -31,9 +31,9 @@
 			}
 		});
 		//切换span标签中的信息
-		if("{{.}}"=="用户名或密码不正确！"){
+		if("{{.}}"=="律师账号或密码不正确"){
 			//设置span标签中的文本值
-			$("#msg").text("用户名或密码不正确！");
+			$("#msg").text("律师账号或密码不正确！");
 		}
 	});
 </script>
@@ -42,7 +42,6 @@
 	<div id="table_1">律师登陆页面</div>
 	<div id="login_header">
 		</div>
-		
 			<div class="login_banner">			
 				<div id="l_content">
 					<span class="login_word">欢迎律师登录</span>
@@ -55,18 +54,18 @@
 								<a href="/pages/lawyer/regist.html">律师注册</a>
 								<br />
 							</div>
-							<div class="msg_cont">
+							<div class="msg_cont"> 
 								<b></b>
-								<span class="errorMsg">请输入律师账号和密码</span>
+								<span class="errorMsg" id="msg">请输入律师账号和密码</span>
 							</div>
 							<div class="form">
-								<form action="/login" method="POST">
+								<form action="/lawyer/login" method="POST">
 									<label>律师账号：</label>
-									<input class="itxt" type="text" placeholder="请输入账号名" autocomplete="off" tabindex="1" name="lawyername" />
+									<input id="lawyername" class="itxt" type="text" placeholder="请输入账号" autocomplete="off" tabindex="1" name="lawyername" />
 									<br />
 									<br />
 									<label>律师密码：</label>
-									<input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" />
+									<input id="password" class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" />
 									<br />
 									<br />
 									<input type="submit" value="登录" id="sub_btn" />

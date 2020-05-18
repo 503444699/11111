@@ -25,6 +25,10 @@
             //获取案件名
             var name = $("#name").val();
 			var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
+			if(!nameReg.test(name)){
+				alert("客户格式不正确！");
+				return false;
+			}
             //获取客户客户电话
             var phone = $("#phone").val();
 			var phoneReg = /^[0-9]{3,20}$/;
@@ -77,6 +81,7 @@
 						<div class="login_box">
 							<div class="tit">
 								<h1>案件信息</h1>
+								<span class="errorMsg" id="msg">{{.}}</span>
 							</div>
 							<br>
 							<div class="form">

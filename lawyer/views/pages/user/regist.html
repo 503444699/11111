@@ -45,11 +45,15 @@
             //获取客户姓名
             var name = $("#name").val();
             var nameReg = /^[^\u4E00-\u9FA5]{2,4}$/;
+			if(!nameReg.test(name)){
+				alert("客户姓名格式不正确！");
+				return false;
+			}
 
 		});
 		//将显示错误提示信息的span标签隐藏
 		$("#msg").hide();
-		if("{{.}}"=="账号已存在！"){
+		if("{{.}}"=="客户账号已存在"){
 			$("#msg").show();
 		}
 
@@ -81,10 +85,11 @@
 						<div class="login_box">
 							<div class="tit">
 								<h1>客户注册</h1>
+								<span class="errorMsg" id="msg">{{.}}</span>
 							</div>
 							<br>
 							<div class="form">
-								<form action="/regist" method="POST">
+								<form action="/user/regist" method="POST">
 									<label>客户账号：</label>
 									<input class="itxt" type="text" placeholder="请输入账号" autocomplete="off" tabindex="1" name="username" id="username" />
 									<br />

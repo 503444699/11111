@@ -4,6 +4,7 @@ import (
 	"lawyer/dao"
 	"html/template"
 	"net/http"
+	"fmt"
 )
 
 // UserLogin 客户登陆函数
@@ -12,6 +13,7 @@ func UserLogin(w http.ResponseWriter, r *http.Request)  {
 	password := r.PostFormValue("password")
 	// 验证客户账号和密码
 	user, _ := dao.CheckUserNameAndPassword(username, password)
+	fmt.Print(user)
 	if user.ID > 0{
 		t := template.Must(template.ParseFiles("views/pages/user/login_success.html"))
 		t.Execute(w, "")
@@ -31,7 +33,7 @@ func UserRegist(w http.ResponseWriter, r *http.Request)  {
 	user, _ := dao.CheckUserNameAndPassword(username, password)
 	if user.ID > 0{
 		t := template.Must(template.ParseFiles("views/pages/user/regist.html"))
-		t.Execute(w, "用户名已存在")
+		t.Execute(w, "客户账号已存在")
 	}else{
 		dao.SaveUser(username, password, name)
 		t := template.Must(template.ParseFiles("views/pages/user/regist_success.html"))
