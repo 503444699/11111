@@ -8,27 +8,26 @@ import (
 
 // CheckUserNameAndPassword 验证客户账号和密码
 func CheckUserNameAndPassword(username string, password string) (*model.User, error) {
-	fmt.Print("user")
 	sqlStr := "select id,lawyername,password from users where username = ? and password = ?"
 	row := utils.Db.QueryRow(sqlStr, username, password)
 	user := &model.User{}
 	row.Scan(&user.ID, &user.Username, &user.Password, &user.Name)
+	fmt.Print(user)
 	return user, nil
 }
 
 // CheckUserName  查询客户账号
 func CheckUserName(username string) (*model.User, error) {
-	fmt.Print("user")
 	sqlStr := "select id,username,password from users where username = ?"
 	row := utils.Db.QueryRow(sqlStr, username)
 	user := &model.User{}
 	row.Scan(&user.ID, &user.Username, &user.Password, &user.Name)
+	fmt.Print(user)
 	return user, nil
 }
  
 // SaveUser 向数据库中插入用户信息
 func SaveUser(username string, password string, name string) error {
-	fmt.Print("user")
 	sqlStr := "insert into users(username,password,name) values(?,?,?)"
 	_, err := utils.Db.Exec(sqlStr, username, password, name)
 	if err != nil {

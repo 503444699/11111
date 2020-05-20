@@ -18,13 +18,13 @@ func TestUser(t *testing.T) {
 }
 
 func testUserLogin(t *testing.T) {
-	user, _ := CheckUserNameAndPassword("admin", "123456")
+	user, _ := CheckUserNameAndPassword("user5", "123456")
 	fmt.Println("获取用户信息是：", user)
 }
 func testUserRegist(t *testing.T) {
-	user, _ := CheckUserName("admin")
+	user, _ := CheckUserName("user5")
 	fmt.Println("获取用户信息是：", user)
 }
 func testSave(t *testing.T) {
-	SaveUser("user1", "123456", "张三")
+	SaveUser("user5", "123456", "张三")
 }
