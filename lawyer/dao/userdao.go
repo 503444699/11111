@@ -12,7 +12,7 @@ func CheckUserNameAndPassword(username string, password string) (*model.User, er
 	row := utils.Db.QueryRow(sqlStr, username, password)
 	user := &model.User{}
 	row.Scan(&user.ID, &user.Username, &user.Password, &user.Name)
-	fmt.Print(user)
+	fmt.Print(username,password)
 	return user, nil
 }
 
@@ -22,7 +22,7 @@ func CheckUserName(username string) (*model.User, error) {
 	row := utils.Db.QueryRow(sqlStr, username)
 	user := &model.User{}
 	row.Scan(&user.ID, &user.Username, &user.Password, &user.Name)
-	fmt.Print(user)
+	fmt.Print(username)
 	return user, nil
 }
  
