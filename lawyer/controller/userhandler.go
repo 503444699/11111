@@ -11,6 +11,7 @@ import (
 func UserLogin(w http.ResponseWriter, r *http.Request)  {
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
+	fmt.Print("user")
 	// 验证客户账号和密码
 	user, _ := dao.CheckUserNameAndPassword(username, password)
 	fmt.Print(user)
@@ -29,6 +30,7 @@ func UserRegist(w http.ResponseWriter, r *http.Request)  {
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
 	name := r.PostFormValue("name")
+	fmt.Print("user")
 	// 验证客户账号和密码
 	user, _ := dao.CheckUserNameAndPassword(username, password)
 	if user.ID > 0{
@@ -45,6 +47,7 @@ func UserRegist(w http.ResponseWriter, r *http.Request)  {
 func CheckUserName(w http.ResponseWriter, r *http.Request) {
 	username := r.PostFormValue("username")
 	user, _ := dao.CheckUserName(username)
+	fmt.Print("user")
 	if user.ID > 0 {
 		w.Write([]byte("用户名已存在！"))
 	} else {
