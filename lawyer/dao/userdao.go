@@ -8,11 +8,16 @@ import (
 
 // CheckUserNameAndPassword 验证客户账号和密码
 func CheckUserNameAndPassword(username string, password string) (*model.User, error) {
-	sqlStr := "select id,lawyername,password from users where username = ? and password = ?"
-	row := utils.Db.QueryRow(sqlStr, username, password)
+	sqlStr := "select id,username,password from user where username = ? and password = ?"
 	user := &model.User{}
-	row.Scan(&user.ID, &user.Username, &user.Password, &user.Name)
-	fmt.Print(username,password)
+	row := utils.Db.QueryRow(sqlStr, username, password)
+	row.Scan(&user.ID, &user.Username, &user.Password)
+	fmt.Println(user)
+	fmt.Println("id:",user.ID)
+	fmt.Println("name:",user.Username)
+	fmt.Println("name:",&user.Username)
+	fmt.Println("password:",user.Password)
+	fmt.Println("password:",&user.Password)
 	return user, nil
 }
 
