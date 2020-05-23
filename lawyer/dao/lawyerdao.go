@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"fmt"
 	"lawyer/model"
 	"lawyer/utils"
 )
@@ -8,9 +9,15 @@ import (
 // CheckLawyerNameAndPassword 验证律师账号和密码
 func CheckLawyerNameAndPassword(lawyername string, password string) (*model.Lawyer, error) {
 	sqlStr := "select id,lawyername,password from lawyer where lawyername = ? and password = ?"
-	row := utils.Db.QueryRow(sqlStr, lawyername, password)
 	lawyer := &model.Lawyer{}
-	row.Scan(&lawyer.ID, &lawyer.Lawyername, &lawyer.Password, &lawyer.Name, &lawyer.Genre, &lawyer.Introduction, &lawyer.Phone)
+	row := utils.Db.QueryRow(sqlStr, lawyername, password)
+	row.Scan(&lawyer.ID, &lawyer.Lawyername, &lawyer.Password)
+	fmt.Println(lawyer)
+	fmt.Println("id:",lawyer.ID)
+	fmt.Println("name:",lawyer.Lawyername)
+	fmt.Println("name:",&lawyer.Lawyername)
+	fmt.Println("password:",lawyer.Password)
+	fmt.Println("password:",&lawyer.Password)
 	return lawyer, nil
 }
 

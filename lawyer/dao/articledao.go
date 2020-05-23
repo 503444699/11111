@@ -5,7 +5,7 @@ import (
 	"lawyer/utils"
 )
 
-//GetArticles 获取数据库中所有的图书
+//GetArticles 获取所有相关文章
 func GetArticles() ([]*model.Article, error) {
 	sqlStr := "select id,author,authorid,genre,title,text"
 	rows, err := utils.Db.Query(sqlStr)

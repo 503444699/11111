@@ -34,7 +34,9 @@ func main () {
     // 查看案件信息
     http.HandleFunc("/getQuestions", controller.GetQuestions)
     // 添加案件信息
-    http.HandleFunc("/addQuestions", controller.AddQuestion)
+    http.HandleFunc("/getAddQuestion", controller.AddQuestion)
+    // 去添加案件信息的页面
+    http.HandleFunc("/toAddBook", controller.ToAddBook)
 
     http.ListenAndServe(":8080",nil)
 }

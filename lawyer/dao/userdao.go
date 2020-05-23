@@ -23,7 +23,7 @@ func CheckUserNameAndPassword(username string, password string) (*model.User, er
 
 // CheckUserName  查询客户账号
 func CheckUserName(username string) (*model.User, error) {
-	sqlStr := "select id,username,password from users where username = ?"
+	sqlStr := "select id,username,password from user where username = ?"
 	row := utils.Db.QueryRow(sqlStr, username)
 	user := &model.User{}
 	row.Scan(&user.ID, &user.Username, &user.Password, &user.Name)
@@ -33,7 +33,7 @@ func CheckUserName(username string) (*model.User, error) {
  
 // SaveUser 向数据库中插入用户信息
 func SaveUser(username string, password string, name string) error {
-	sqlStr := "insert into users(username,password,name) values(?,?,?)"
+	sqlStr := "insert into user(username,password,name) values(?,?,?)"
 	_, err := utils.Db.Exec(sqlStr, username, password, name)
 	if err != nil {
 		return err

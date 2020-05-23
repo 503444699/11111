@@ -5,9 +5,11 @@ import (
 	"lawyer/utils"
 )
 
-//GetQuestions 获取所有案件信息
+//GetQuestions 获取数据库中所有的图书
 func GetQuestions() ([]*model.Question, error) {
-	sqlStr := "select id,username,name,phone,genre,state"
+	//写sql语句
+	sqlStr := "select id,name,username,phone,genre,state from question"
+	//执行
 	rows, err := utils.Db.Query(sqlStr)
 	if err != nil {
 		return nil, err
@@ -15,18 +17,29 @@ func GetQuestions() ([]*model.Question, error) {
 	var questions []*model.Question
 	for rows.Next() {
 		question := &model.Question{}
-		rows.Scan(&question.ID, &question.Username, &question.Name, &question.Phone, &question.Genre, &question.State)
+		//给question中的字段赋值
+		rows.Scan(&question.ID, &question.Name, &question.Username, &question.Phone, &question.Genre, &question.State)
+		//将question添加到questions中
 		questions = append(questions, question)
 	}
 	return questions, nil
 }
 
-//AddQuestion 添加案件
+// AddQuestion 向数据库中插入案件信息
 func AddQuestion(question *model.Question) error {
-	slqStr := "insert into questions(username,name,phone,genre,state) values(?,?,?,?,?)"
-	_, err := utils.Db.Exec(slqStr, question.Username, question.Name, question.Phone, question.Genre, question.State)
+	sqlStr := "insert into question(name,username,phone,genre,state) values(?,?,?,?,?)"
+	_, err := utils.Db.Exec(sqlStr, question.Name, question.Username, question.Phone, question.Genre, question.State)
 	if err != nil {
 		return err
 	}
 	return nil
+}
+
+// GetQuestionByID 查询案件id
+func GetQuestionByID(questionID string) (*model.Question, error) {
+	sqlStr := "select id,name,username,phone,genre,state from question where id = ?"
+	row := utils.Db.QueryRow(sqlStr, questionID)
+	question := &model.Question{}
+	row.Scan(&question.ID, &question.Name, &question.Username, &question.Phone, &question.Genre, &question.State)
+	return question, nil
 }

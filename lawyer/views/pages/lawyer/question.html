@@ -4,16 +4,20 @@
 <meta charset="UTF-8">
 <title>案件信息</title>
 <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+<script src="/static/script/jquery-1.7.2.js"></script>
 </head>
 <body>
-	<div id="table_1">律师登陆页面</div>
-	<div id="login_header"></div>	
+	<div id="table_1">律师注册成功页面</div>
+    <div id="login_header">
+			<br><a href="/main">返回首页</a></br>	
+	</div>	
 	<div id="main">
+		<form action="/getQuestions" method="POST">
 		<table>
 			<tr>
 				<td>案件编号</td>
-				<td>客户账号</td>
 				<td>案件名称</td>
+				<td>客户账号</td>
 				<td>客户电话</td>
 				<td>案件类型</td>
 				<td>案件状态</td>
@@ -21,25 +25,16 @@
 		{{range .Questions}}		
 			<tr>
 				<td>{{.ID}}</td>
-				<td>{{.Username}}</td>
 				<td>{{.Name}}</td>
+				<td>{{.Username}}</td>				
 				<td>{{.Phone}}</td>
 				<td>{{.Genre}}</td>
-				<td>{{.Static}}</td>
+				<td>{{.State}}</td>
 			</tr>	
-		{{end}}
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>	
+		{{end}}	
 		</table>
-        <br><button type="button"><a href="/main">返回主页面</a></button></br>
+	</form>
 	</div>
-	
 	<div id="bottom">
 		<span>
             律师服务系统

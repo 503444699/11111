@@ -31,7 +31,6 @@ func UserRegist(w http.ResponseWriter, r *http.Request)  {
 	name := r.PostFormValue("name")
 	// 验证客户账号和密码
 	user, _ := dao.CheckUserNameAndPassword(username, password)
-	fmt.Print(username,password)
 	if user.ID > 0{
 		t := template.Must(template.ParseFiles("views/pages/user/regist.html"))
 		t.Execute(w, "客户账号已存在")
@@ -46,10 +45,9 @@ func UserRegist(w http.ResponseWriter, r *http.Request)  {
 func CheckUserName(w http.ResponseWriter, r *http.Request) {
 	username := r.PostFormValue("username")
 	user, _ := dao.CheckUserName(username)
-	fmt.Print(username)
 	if user.ID > 0 {
-		w.Write([]byte("用户名已存在！"))
+		w.Write([]byte("客户账号已存在"))
 	} else {
-		w.Write([]byte("<font style='color:green'>用户名可用！</font>"))
+		w.Write([]byte("<font style='color:green'>客户账号可用</font>"))
 	}
 }

@@ -15,7 +15,7 @@ func LawyerLogin(w http.ResponseWriter, r *http.Request)  {
 	lawyer, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
 	fmt.Print(lawyer)
 	if lawyer.ID > 0{
-		t := template.Must(template.ParseFiles("views/pages/lawyer/login_sucess.html"))
+		t := template.Must(template.ParseFiles("views/pages/lawyer/login_success.html"))
 		t.Execute(w, "")
 	}else{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/login.html"))
@@ -32,8 +32,8 @@ func LawyerRegist(w http.ResponseWriter, r *http.Request)  {
 	introduction := r.PostFormValue("introduction")
 	phone := r.PostFormValue("phone")
 	// 验证客户账号和密码
-	user, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
-	if user.ID > 0{
+	lawyer, _ := dao.CheckLawyerNameAndPassword(lawyername, password)
+	if lawyer.ID > 0{
 		t := template.Must(template.ParseFiles("views/pages/lawyer/regist.html"))
 		t.Execute(w, "律师账号已存在")
 	}else{
@@ -47,8 +47,8 @@ func CheckLawyerName(w http.ResponseWriter, r *http.Request) {
 	lawyername := r.PostFormValue("lawyername")
 	lawyer, _ := dao.CheckLawyerName(lawyername)
 	if lawyer.ID > 0 {
-		w.Write([]byte("用户名已存在！"))
+		w.Write([]byte("律师账号已存在"))
 	} else {
-		w.Write([]byte("<font style='color:green'>用户名可用！</font>"))
+		w.Write([]byte("<font style='color:green'>律师账号可用</font>"))
 	}
 }

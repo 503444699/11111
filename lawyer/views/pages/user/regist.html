@@ -25,9 +25,9 @@
 			}
 			//获取客户输入的密码
 			var password = $("#password").val();
-			var passwordReg = /^[a-zA-Z0-9_-]{6,18}$/;
+			var passwordReg = /^[a-zA-Z0-9_-]{3,18}$/;
 			if(!passwordReg.test(password)){
-				alert("请输入6-18位的字母、数字、下划线或减号的密码！")
+				alert("请输入3-18位的字母、数字、下划线或减号的密码！")
 				return false;
 			}
 			//获取客户输入的确认密码
@@ -42,14 +42,6 @@
 				alert("两次输入的密码不一致！");
 				return false;
 			}
-            //获取客户姓名
-            var name = $("#name").val();
-            var nameReg = /^[^\u4E00-\u9FA5]{2,4}$/;
-			if(!nameReg.test(name)){
-				alert("客户姓名格式不正确！");
-				return false;
-			}
-
 		});
 		//将显示错误提示信息的span标签隐藏
 		$("#msg").hide();

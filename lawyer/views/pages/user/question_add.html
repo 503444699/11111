@@ -14,50 +14,17 @@
 <script>
 	$(function(){
 		//给添加按钮绑定单击事件
-		$("#sub_btn").click(function(){
-			var username = $("#username").val();
-			var usernameReg = /^[a-zA-Z0-9_-]{3,16}$/;
-			var flag = usernameReg.test(username);
-			if(!flag){
-				alert("请输入3-16位的字母、数字、下划线或减号的用户名！");
-				return false;
-			}
-            //获取案件名
-            var name = $("#name").val();
-			var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
-			if(!nameReg.test(name)){
-				alert("客户格式不正确！");
-				return false;
-			}
-            //获取客户客户电话
-            var phone = $("#phone").val();
-			var phoneReg = /^[0-9]{3,20}$/;
-			if(!phoneReg.test(phone)){
-				alert("电话格式不正确！");
-				return false;
-			}
-			//获取案件类型
-			var genre = $("#genre").val();
-			var genreReg = /^[\u4E00-\u9FA5]{2，8}$/;
-			if(!genreReg.test(genre)){
-				alert("案件类型格式不正确！");
-				return false;
-			}
-			//获取案件状态
-			var state = $("#state").val();
-			var stateReg = /^[\u4E00-\u9FA5]{0,300}$/;
-			if(!stateReg.test(state)){
-				alert("案件状态格式不正确！");
-				return false;
-			}
-
-		});
-
+		$("#sub_btn").click(function(){});
+		//将显示错误提示信息的span标签隐藏
+		$("#msg").hide();
+		if("{{.}}"=="案件信息已注册"){
+			$("#msg").show();
+		}
 		//给输入客户账号的文本框绑定change事件
-		$("#username").change(function(){
-			var username = $(this).val();
-			var url = "/checkUserName";
-			var param = {"username":username};
+		$("#id").change(function(){
+			var id = $(this).val();
+			var url = "/GetQuestionByID";
+			var param = {"id":id};
 			$.post(url,param,function(res){
 				$("#msg").show();
 				$("#msg").html(res);
@@ -70,14 +37,14 @@
 	<div id="table_1">案件添加页面</div>
 	<div id="login_header">
 		</div>
-			<div class="login_banner2">
+			<div class="login_banner3">
 			
 				<div id="l_content">
 					<span class="login_word">添加案件信息</span>
 				</div>
 				
 				<div id="content">
-					<div class="login_form2">
+					<div class="login_form3">
 						<div class="login_box">
 							<div class="tit">
 								<h1>案件信息</h1>
@@ -85,15 +52,15 @@
 							</div>
 							<br>
 							<div class="form">
-								<form action="/question" method="POST">
+								<form action="/question_add" method="POST">
+									<label>案件名称：</label>
+									<input class="itxt" type="text" placeholder="请输入案件名称" autocomplete="off" tabindex="1" name="name" id="name" />
+									<br />
+                                    <br />
 									<label>客户账号：</label>
 									<input class="itxt" type="text" placeholder="请输入客户账号" autocomplete="off" tabindex="1" name="username" id="username" />
 									<br />
 									<br />
-                                    <label>案件名称：</label>
-									<input class="itxt" type="text" placeholder="请输入案件名称" autocomplete="off" tabindex="1" name="name" id="name" />
-									<br />
-                                    <br />
                                     <label>客户电话：</label>
 									<input class="itxt" type="text" placeholder="请输入客户电话" autocomplete="off" tabindex="1" name="phone"" id="phone" />
 									<br />
@@ -106,7 +73,7 @@
 									<input class="itxt" type="text" placeholder="请输入案件状态" autocomplete="off" tabindex="1" name="state" id="state" />
 									<br />
                                     <br />
-									<input type="submit" value="注册" id="sub_btn" />
+									<input type="submit" value="添加案件" id="sub_btn" />
 								</form>
 							</div>
 							

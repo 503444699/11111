@@ -24,9 +24,9 @@
 			}
 			//获取客户输入的密码
 			var password = $("#password").val();
-			var passwordReg = /^[a-zA-Z0-9_-]{6,18}$/;
+			var passwordReg = /^[a-zA-Z0-9_-]{3,18}$/;
 			if(!passwordReg.test(password)){
-				alert("请输入6-18位的字母、数字、下划线或减号的密码！")
+				alert("请输入3-18位的字母、数字、下划线或减号的密码！")
 				return false;
 			}
 			var repwd = $("#repwd").val();
@@ -40,35 +40,7 @@
 				alert("两次输入的密码不一致！");
 				return false;
 			}
-            //获取客户姓名
-            var name = $("#name").val();
-            var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
-			if(!nameReg.test(name)){
-				alert("律师姓名格式不正确！");
-				return false;
-			}
-
-            //获取律师类型
-            var genre = $("#genre").val();
-            var genreReg = /^[\u4E00-\u9FA5]{2,4}$/;
-			if(!genreReg.test(genre)){
-				alert("律师类型格式不正确！");
-				return false;
-			}
-            //获取律师经验
-            var introduction = $("#introduction").val();
-            var introductionReg = /^[\u4E00-\u9FA5]{1,300}$/;
-			if(!introductionReg.test(introduction)){
-				alert("律师经验格式不正确！");
-				return false;
-			}
-            //获取律师电话
-			var phone = $("#phone").val();
-			var phoneReg = /^[0-9]{3,20}$/;
-			if(!phoneReg.test(phone)){
-				alert("律师电话格式不正确！");
-				return false;
-			}
+           
 			
 
 		});

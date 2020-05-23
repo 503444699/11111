@@ -90,6 +90,11 @@ div{
 	background-color: #39987c;
 }
 
+.login_banner3{
+	height:550px;
+	background-color: #39987c;
+}
+
 .login_form{
 	height:310px;
 	width:406px;
@@ -101,6 +106,15 @@ div{
 
 .login_form2{
 	height:600px;
+	width:406px;
+	float: right;
+	margin-right:50px;
+	margin-top: 50px;
+	background-color: #fff;
+}
+
+.login_form3{
+	height:450px;
 	width:406px;
 	float: right;
 	margin-right:50px;
