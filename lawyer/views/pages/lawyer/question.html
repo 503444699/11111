@@ -12,7 +12,6 @@
 			<br><a href="/main">返回首页</a></br>	
 	</div>	
 	<div id="main">
-		<form action="/getQuestions" method="POST">
 		<table>
 			<tr>
 				<td>案件编号</td>
@@ -22,16 +21,25 @@
 				<td>案件类型</td>
 				<td>案件状态</td>
 			</tr>	
-		{{range .Questions}}		
+		{{range.Questions}}		
 			<tr>
-				<td>{{.ID}}</td>
-				<td>{{.Name}}</td>
-				<td>{{.Username}}</td>				
-				<td>{{.Phone}}</td>
-				<td>{{.Genre}}</td>
-				<td>{{.State}}</td>
-			</tr>	
+				<td>{{.ID }}</td>
+				<td>{{.Name }}</td>
+				<td>{{.Username }}</td>				
+				<td>{{.Phone }}</td>
+				<td>{{.Genre }}</td>
+				<td>{{.State }}</td>
+			</tr>
 		{{end}}	
+		    <tr>
+				<td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+
+		    </tr>	
 		</table>
 	</form>
 	</div>
