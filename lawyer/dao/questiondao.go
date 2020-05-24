@@ -3,6 +3,7 @@ package dao
 import (
 	"lawyer/model"
 	"lawyer/utils"
+	"fmt"
 )
 
 //GetQuestions 获取数据库中所有的图书
@@ -19,9 +20,11 @@ func GetQuestions() ([]*model.Question, error) {
 		question := &model.Question{}
 		//给question中的字段赋值
 		rows.Scan(&question.ID, &question.Name, &question.Username, &question.Phone, &question.Genre, &question.State)
+		fmt.Print(question)
 		//将question添加到questions中
 		questions = append(questions, question)
 	}
+	fmt.Print(questions[0])
 	return questions, nil
 }
 

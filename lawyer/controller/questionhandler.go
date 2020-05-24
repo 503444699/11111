@@ -5,13 +5,15 @@ import (
 	"lawyer/dao"
 	"html/template"
 	"net/http"
+	"fmt"
 )
 
 // GetQuestions 获取所有的案件
 func GetQuestions(w http.ResponseWriter, r *http.Request) {
     //调用所有案件
     questions, _ := dao.GetQuestions()
-    t := template.Must(template.ParseFiles("views/pages/lawyer/question.html"))
+	t := template.Must(template.ParseFiles("views/pages/lawyer/question.html"))
+	fmt.Print(questions[0])
     t.Execute(w, questions)
 }
 

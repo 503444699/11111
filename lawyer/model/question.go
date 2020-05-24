@@ -9,3 +9,7 @@ type Question struct {
 	Genre string 
 	State string
 }
+
+type Questions struct {
+	QuestionList []Question
+}

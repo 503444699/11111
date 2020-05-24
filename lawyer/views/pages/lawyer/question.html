@@ -21,7 +21,7 @@
 				<td>案件类型</td>
 				<td>案件状态</td>
 			</tr>	
-		{{range.Questions}}		
+			{{range .}}		
 			<tr>
 				<td>{{.ID }}</td>
 				<td>{{.Name }}</td>
@@ -30,18 +30,17 @@
 				<td>{{.Genre }}</td>
 				<td>{{.State }}</td>
 			</tr>
-		{{end}}	
-		    <tr>
-				<td></td>
-			    <td></td>
-			    <td></td>
-			    <td></td>
-			    <td></td>
-			    <td></td>
+			{{end}}	
+		    	<tr>
+		    	        <td></td>
+		    	        <td></td>
+		    	        <td></td>
+		    	        <td></td>
+		    	        <td></td>
+		    	        <td></td>
 
-		    </tr>	
+		    	</tr>	
 		</table>
-	</form>
 	</div>
 	<div id="bottom">
 		<span>
