@@ -6,10 +6,10 @@ import (
 	"fmt"
 )
 
-//GetQuestions 获取数据库中所有的图书
+//GetQuestions 获取数据库中所有的案件
 func GetQuestions() ([]*model.Question, error) {
 	//写sql语句
-	sqlStr := "select id,name,username,phone,genre,state from question"
+	sqlStr := "select id,number,name,username,phone,genre,state from question"
 	//执行
 	rows, err := utils.Db.Query(sqlStr)
 	if err != nil {
@@ -19,7 +19,7 @@ func GetQuestions() ([]*model.Question, error) {
 	for rows.Next() {
 		question := &model.Question{}
 		//给question中的字段赋值
-		rows.Scan(&question.ID, &question.Name, &question.Username, &question.Phone, &question.Genre, &question.State)
+		rows.Scan(&question.ID, &question.Number, &question.Name, &question.Username, &question.Phone, &question.Genre, &question.State)
 		fmt.Print(question)
 		//将question添加到questions中
 		questions = append(questions, question)
@@ -29,20 +29,32 @@ func GetQuestions() ([]*model.Question, error) {
 }
 
 // AddQuestion 向数据库中插入案件信息
-func AddQuestion(question *model.Question) error {
-	sqlStr := "insert into question(name,username,phone,genre,state) values(?,?,?,?,?)"
-	_, err := utils.Db.Exec(sqlStr, question.Name, question.Username, question.Phone, question.Genre, question.State)
+func AddQuestion(number string, name string, username string, phone string, genre string, state string) error {
+	sqlStr := "insert into question(number,name,username,phone,genre,state) values(?,?,?,?,?,?)"
+	_, err := utils.Db.Exec(sqlStr, number, name, username, phone, genre, state)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-// GetQuestionByID 查询案件id
-func GetQuestionByID(questionID string) (*model.Question, error) {
-	sqlStr := "select id,name,username,phone,genre,state from question where id = ?"
-	row := utils.Db.QueryRow(sqlStr, questionID)
+// CheckNumber 查询
+func CheckNumber(number string) (*model.Question, error) {
+	sqlStr := "select id,number,name,username from question where number = ?"
+	row := utils.Db.QueryRow(sqlStr, number)
 	question := &model.Question{}
-	row.Scan(&question.ID, &question.Name, &question.Username, &question.Phone, &question.Genre, &question.State)
+	row.Scan(&question.ID, &question.Number, &question.Name, &question.Username, &question.Phone,&question.Genre, &question.State)
+	fmt.Println(question)
 	return question, nil
 }
+
+// CheckNumberAndName 验证
+func CheckNumberAndName(number string, name string) (*model.Question, error) {
+	sqlStr := "select id,number,name from question where number = ? and name = ?"
+	question := &model.Question{}
+	row := utils.Db.QueryRow(sqlStr, number, name)
+	row.Scan(&question.ID, &question.Number, &question.Name)
+	fmt.Println(question)
+	return question, nil
+}
+

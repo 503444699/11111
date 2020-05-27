@@ -9,3 +9,8 @@ type Article struct {
 	Title string
 	Text string
 }
+
+// Articles 结构
+type Articles struct {
+	ArticleList []Article
+}

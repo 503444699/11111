@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"lawyer/model"
 	"lawyer/dao"
 	"html/template"
 	"net/http"
@@ -17,41 +16,48 @@ func GetQuestions(w http.ResponseWriter, r *http.Request) {
     t.Execute(w, questions)
 }
 
-// AddQuestion 添加案件信息
-func AddQuestion(w http.ResponseWriter, r *http.Request) {
-	//获取案件信息
+// QuestionAdd 添加
+func QuestionAdd(w http.ResponseWriter, r *http.Request)  {
+	number := r.PostFormValue("number")
 	name := r.PostFormValue("name")
 	username := r.PostFormValue("username")
 	phone := r.PostFormValue("phone")
- 	genre := r.PostFormValue("genre")
- 	state := r.PostFormValue("state")
-	//创建案件
-	question := &model.Question{
-		Name: name,
-		Username: username,
-		Phone: phone,
-		Genre: genre,
-		State: state,
+	genre := r.PostFormValue("genre")
+	state := r.PostFormValue("state")
+	// 验证
+	question, _ := dao.CheckNumberAndName(number, name)
+	fmt.Print(question)
+	fmt.Println("id:",question.ID)
+	fmt.Println("name:",question.Number)
+	fmt.Println("name:",&question.Number)
+	fmt.Println("password:",question.Name)
+	fmt.Println("password:",&question.Name)
+	fmt.Println("user:",question.Username)
+	fmt.Println("user:",&question.Username)
+	fmt.Println("phone:",question.Phone)
+	fmt.Println("phone:",&question.Phone)
+	fmt.Println("state:",question.State)
+	fmt.Println("s:",&question.State)
+	fmt.Println("g:",question.Genre)
+	fmt.Println("g:",&question.Genre)
+	if question.ID > 0{
+		t := template.Must(template.ParseFiles("views/pages/user/quessstion_add.html"))
+		t.Execute(w, "案件已存在")
+	}else{
+		dao.AddQuestion(number, name, username, phone, genre, state)
+		t := template.Must(template.ParseFiles("views/pages/user/add_success.html"))
+		t.Execute(w, "")
 	}
-	dao.AddQuestion(question)
-	GetQuestions(w, r)
 }
 
-//ToAddBook 去添加图书的页面
-func ToAddBook(w http.ResponseWriter, r *http.Request) {
-	//获取要更新的图书的id
-	questionID := r.FormValue("questionID")
-	//调用bookdao中获取图书的函数
-	question, _ := dao.GetQuestionByID(questionID)
+//CheckNumber 验证
+func CheckNumber(w http.ResponseWriter, r *http.Request) {
+	number := r.PostFormValue("number")
+	question, _ := dao.CheckNumber(number)
+	fmt.Print(question)
 	if question.ID > 0 {
-		//解析模板
-		t := template.Must(template.ParseFiles("views/pages/user/question_add.html"))
-		//执行
-		t.Execute(w, "案件信息已注册")
+		w.Write([]byte("案件已存在"))
 	} else {
-		//解析模板
-		t := template.Must(template.ParseFiles("views/pages/user/add_success.html"))
-		//执行
-		t.Execute(w, "")
+		w.Write([]byte("<font style='color:green'>案件可注册</font>"))
 	}
 }

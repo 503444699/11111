@@ -7,13 +7,15 @@
 <script src="/static/script/jquery-1.7.2.js"></script>
 </head>
 <body>
-	<div id="table_1">律师注册成功页面</div>
+	<div id="table_1">查看案件信息页面</div>
     <div id="login_header">
-			<br><a href="/main">返回首页</a></br>	
+		<br><a href="/main"><div align="center">返回首页</div></a></br>	
 	</div>	
 	<div id="main">
-		<table>
+		<div id="table_5">
+			<table align="center"  width="1000px">      
 			<tr>
+				<td>数据编号</td>
 				<td>案件编号</td>
 				<td>案件名称</td>
 				<td>客户账号</td>
@@ -24,11 +26,12 @@
 			{{range .}}		
 			<tr>
 				<td>{{.ID }}</td>
-				<td>{{.Name }}</td>
-				<td>{{.Username }}</td>				
-				<td>{{.Phone }}</td>
-				<td>{{.Genre }}</td>
-				<td>{{.State }}</td>
+				<td>{{.Number}}</td>
+				<td>{{.Name}}</td>
+				<td>{{.Username}}</td>				
+				<td>{{.Phone}}</td>
+				<td>{{.Genre}}</td>
+				<td>{{.State}}</td>
 			</tr>
 			{{end}}	
 		    	<tr>
@@ -41,6 +44,7 @@
 
 		    	</tr>	
 		</table>
+		</div>
 	</div>
 	<div id="bottom">
 		<span>

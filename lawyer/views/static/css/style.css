@@ -51,6 +51,22 @@ div{
 	color: #39987c;
 }
 
+
+#table_4 {
+	text-align: center;
+    width: 1000px;
+	margin-right:auto;
+	font-size: 10px ;
+	color:black;
+}
+
+#table_5 {
+	text-align: center;
+	margin-right:30px;
+	font-size: 20px ;
+	color:black;
+}
+
 .button {
 	background-color: #39987c;
 	font-size: 20px;

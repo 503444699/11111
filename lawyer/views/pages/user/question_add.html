@@ -14,17 +14,25 @@
 <script>
 	$(function(){
 		//给添加按钮绑定单击事件
-		$("#sub_btn").click(function(){});
+		$("#sub_btn").click(function(){
+			var number = $("#number").val();
+			var numberReg = /^[a-zA-Z0-9_-]{3,16}$/;
+			var flag = numberReg.test(number);
+			if(!flag){
+				alert("请输入3-16位的字母、数字、下划线或减号的案件编号！");
+				return false;
+			}
+		});
 		//将显示错误提示信息的span标签隐藏
 		$("#msg").hide();
-		if("{{.}}"=="案件信息已注册"){
+		if("{{.}}"=="案件已存在"){
 			$("#msg").show();
 		}
-		//给输入客户账号的文本框绑定change事件
-		$("#id").change(function(){
-			var id = $(this).val();
-			var url = "/GetQuestionByID";
-			var param = {"id":id};
+		//给输入案件账号的文本框绑定change事件
+		$("#number").change(function(){
+			var number = $(this).val();
+			var url = "/checkNumber";
+			var param = {"number":number};
 			$.post(url,param,function(res){
 				$("#msg").show();
 				$("#msg").html(res);
@@ -37,14 +45,14 @@
 	<div id="table_1">案件添加页面</div>
 	<div id="login_header">
 		</div>
-			<div class="login_banner3">
+			<div class="login_banner2">
 			
 				<div id="l_content">
 					<span class="login_word">添加案件信息</span>
 				</div>
 				
 				<div id="content">
-					<div class="login_form3">
+					<div class="login_form2">
 						<div class="login_box">
 							<div class="tit">
 								<h1>案件信息</h1>
@@ -52,7 +60,11 @@
 							</div>
 							<br>
 							<div class="form">
-								<form action="/question_add" method="POST">
+								<form action="/questionAdd" method="POST">
+									<label>案件编号：</label>
+									<input class="itxt" type="text" placeholder="请输入案件编号" autocomplete="off" tabindex="1" name="number" id="number" />
+									<br />
+                                    <br />
 									<label>案件名称：</label>
 									<input class="itxt" type="text" placeholder="请输入案件名称" autocomplete="off" tabindex="1" name="name" id="name" />
 									<br />

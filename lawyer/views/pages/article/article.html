@@ -6,10 +6,15 @@
 <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
 <script src="/static/script/jquery-1.7.2.js"></script>
 </head>
-<body>	
+<body>
+	<div id="table_1">查看文章页面</div>
+    <div id="login_header">
+			<br><a href="/main"><div align="center">返回首页</div></a></br>	
+	</div>		
     <div id="main">
-		<table>
-            
+		<form>
+			<div id="table_4">
+		<table align="center"  width="1000px">          
 			<tr>
 				<td>文章编号</td>
 				<td>作者姓名</td>
@@ -17,29 +22,22 @@
 				<td>文章类型</td>
 				<td>文章标题</td>
 			</tr>	
-		{{range .Articles}}		
+		{{range .}}		
 			<tr>
 				<td>{{.ID}}</td>
 				<td>{{.Author}}</td>
 				<td>{{.Authorid}}</td>
 				<td>{{.Genre}}</td>
 				<td>{{.Title}}</td>
-				<td>{{.Text}}</td>
-			</tr>	
+			</tr>		
+		<tr>
+			<td colspan="5">{{.Text}}</td>
+		</tr>
 		{{end}}
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-            </tr>
-        </table>
+	</table>
+			</div>
+	</form>
     </div>
-        <br><button type="button"><a href="/main">返回登陆页面</a></button></br>
-	</div>
-	
 	<div id="bottom">
 		<span>
             律师服务系统

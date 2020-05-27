@@ -30,13 +30,11 @@ func main () {
     // 律师注册
     http.HandleFunc("/lawyer/regist",controller.LawyerRegist)
     // 查看相关文档
-    http.HandleFunc("/getArticle",controller.GetArticles)
+    http.HandleFunc("/getArticles",controller.GetArticles)
     // 查看案件信息
     http.HandleFunc("/getQuestions", controller.GetQuestions)
     // 添加案件信息
-    http.HandleFunc("/getAddQuestion", controller.AddQuestion)
-    // 去添加案件信息的页面
-    http.HandleFunc("/toAddBook", controller.ToAddBook)
+    http.HandleFunc("/questionAdd",controller.QuestionAdd)
 
     http.ListenAndServe(":8080",nil)
 }
